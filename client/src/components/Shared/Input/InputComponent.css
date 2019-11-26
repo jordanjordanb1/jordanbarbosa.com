@@ -1,0 +1,16 @@
+.console-input {
+    border: none;
+    background: none;
+    z-index: 9999999999999999;
+    cursor: default;
+    pointer-events: auto;
+    outline: none;
+    color: white;
+    padding: 0;
+    width: 60%;
+    display: inline-block;
+}
+
+.console-form {
+    display: inline-block;
+}

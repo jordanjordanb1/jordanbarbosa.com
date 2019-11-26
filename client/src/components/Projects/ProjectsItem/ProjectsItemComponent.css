@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+
+.project-card {
+    width: 400px;
+    margin: 20px 20px;
+    transition: .3s;
+}
+
+.project-card:hover {
+    box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.6)
+}
+
+.project-card-btn-group {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.project-card-btn-group a {
+    width: 50%;
+    font-size: 1.2em;
+    padding: 20px 0;
+}
+
+.tech-flex {
+    flex-wrap: wrap;
+}
+
+.tech-box {
+    padding: 10px 5px;
+    margin-right: 10px; 
+    border-radius: 5px;
+    color: white;
+    background: var(--blue);
+    font-size: .9em;
+}
+
+.item-header {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1350px) {
+    .project-card {
+        min-width: 300px;
+    }
+
+    .tech-box {
+        display: none;
+    }
+
+    .tech-header {
+        display: none;
+    }
+
+    .tech-box {
+        font-size: .7em;
+    }
+
+    .item-header {
+        margin: 0 0 10px 0;
+        font-size: 1.5em;
+    }
+
+    .project-card-btn-group a {
+        font-size: 1em;
+    }
+}

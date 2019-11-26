@@ -1,0 +1,38 @@
+.modal-backdrop {
+    background: rgb(100, 100, 100);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    border: none;
+    box-shadow: 1px 5px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+.contact-buttons {
+    width: 100%;
+}
+
+.form-button {
+    width: 100%;
+}
+
+.contact-input {
+    border: none;
+    transition: .5s;
+    border: 1px solid rgb(230, 230, 230);
+}
+
+.contact-input:focus {
+    box-shadow: 1px 5px 10px -2px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgb(230, 230, 230);
+}
+
+.input-error {
+    border: 1px solid red;
+    transition: border 1s;
+}
+
+.error-box {
+    margin-top: 5px;
+    margin-bottom: -10px;
+}

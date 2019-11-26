@@ -1,0 +1,25 @@
+.projects-container {
+    position: absolute; top: 0; left: 0;
+    z-index: 9999999999999999999;
+    background: rgb(230, 230, 230);
+    width: 100%; height: auto;
+    min-height: 100vh;
+}
+
+.opening-projects {
+    animation: showProjects 1s ease-in;
+}
+
+.closing-projects {
+    animation: hideProjects 2s ease-out;
+}
+
+@keyframes showProjects {
+    from { transform: translateY(-6000px) }
+    to { transform: translateY(0px) }
+}
+
+@keyframes hideProjects {
+    from { transform: translateY(0px) }
+    to { transform: translateY(-6000px) }
+}

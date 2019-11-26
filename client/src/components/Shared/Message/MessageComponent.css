@@ -1,0 +1,17 @@
+.message-item {
+    display: inline-block;
+}
+
+.message-container {
+    color: white;
+}
+
+.message-container > * {
+    margin: 0;
+}
+
+.message-container span.carrot {
+    position: relative; 
+    font-size: 1.3em;
+    margin-right: 5px;
+}

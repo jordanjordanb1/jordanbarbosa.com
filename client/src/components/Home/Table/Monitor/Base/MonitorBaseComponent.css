@@ -1,0 +1,54 @@
+.monitorbase-container {
+    display: block;
+    margin: 0 auto;
+    width: 25%; height: auto;
+}
+
+.monitorbase-stand {
+    height: 100px; width: 12.5%;
+    background: silver;
+    display: block;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(170, 170, 170);
+}
+
+.monitorbase-circle {
+    display: block;
+    margin: 0 auto;
+    background: rgb(230, 230, 230);
+    width: 50%; height: 40px;
+    border-radius: 0 0 25px 25px;
+}
+
+.monitorbase-base {
+    height: 10px; width: 100%;
+    background: silver;
+}
+
+@media screen and (max-width: 2650px) {
+    .monitorbase-stand {
+        width: 15%;
+    }
+}
+
+@media screen and (max-width: 2050px) {
+    .monitorbase-stand {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .monitorbase-stand {
+        width: 25%; height: 75px;
+    }
+
+    .monitorbase-circle {
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 925px) {
+    .monitorbase-stand {
+        width: 30%;
+    }
+}

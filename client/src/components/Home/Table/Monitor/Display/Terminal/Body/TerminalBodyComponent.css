@@ -1,0 +1,79 @@
+
+
+.terminal-body {
+    width: 100%; height: 100%;
+    font-family: var(--ubuntu);
+    padding: 5px 20px;
+    overflow: hidden;
+}
+
+.terminal-body:hover {
+    overflow-y: scroll;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 10px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    border-radius: 10px;
+}
+
+.terminal-body p, 
+.terminal-body input {
+    font-size: .95em;
+    color: white;
+}
+
+.command-tip {
+    color: rgb(255, 74, 74);
+}
+
+.command-link {
+    cursor: pointer;
+}
+
+.command-link:hover {
+    text-decoration: underline;
+}
+
+table > * {
+    color: white;
+}
+
+table tbody tr td {
+    padding-right: 100px;
+}
+
+.terminal-btn-group {
+    margin: 10px 0 !important;
+}
+
+.terminal-btn-group a {
+    padding: 20px 30px;
+    background: none;
+    border: 1px dashed red;
+}
+
+.terminal-btn-group a:hover {
+    border: 1px dashed red;
+    background: rgb(200, 0, 0);
+}
+
+.terminal-btn-group a:focus {
+    outline: none;
+}
+
+.console-input {
+    border: none;
+    background: none;
+    z-index: 9999999999999999;
+    cursor: pointer;
+    pointer-events: auto;
+    outline: none;
+    color: white;
+    padding: 0;
+    width: 80%;
+}

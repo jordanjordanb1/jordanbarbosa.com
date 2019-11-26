@@ -1,0 +1,12 @@
+.projects-leave {
+    z-index: 99999999999999999;
+    position: absolute; top: 0; right: 0;
+    background: none;
+    border: none;
+    font-size: 2em;
+    width: 100px; height: 100px;
+}
+
+.projects-leave:hover {
+    background: rgb(190, 190, 190);
+}

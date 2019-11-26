@@ -1,0 +1,10 @@
+.user-line-container {
+    width: auto; height: 100%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.comp-info {
+    color: #59F48D;
+    padding: 0; margin: 0;
+}
