@@ -1,10 +1,26 @@
 import React, { PureComponent } from 'react'
-import { Card, CardImg, CardText, CardBody, CardTitle, ButtonGroup, CardSubtitle } from 'reactstrap'
+import { Card, CardImg, CardText, CardBody, CardTitle, ButtonGroup, CardSubtitle, Collapse, Alert } from 'reactstrap'
 import { config } from '../../../config'
 
 import './ProjectsItemComponent.css'
 
 export default class ProjectsItemComponent extends PureComponent {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            isCollapseOpen: false
+        }
+
+        this.toggleCollapse = this.toggleCollapse.bind(this)
+    }
+
+    toggleCollapse() {
+        this.setState({
+            isCollapseOpen: !this.state.isCollapseOpen
+        })
+    }
+
     renderTechUsed() {
         const tech = this.props.values.tech
 
@@ -20,6 +36,16 @@ export default class ProjectsItemComponent extends PureComponent {
             <Card className="project-card">
                 <CardImg top src={`${config.url}/static/media/projects/${values.img}`} alt={values.name} />
                 <CardBody>
+                    { values.isHeroku ? 
+                        <>
+                            <CardSubtitle className="heroku-note" onClick={this.toggleCollapse}>
+                                <i className="fas fa-info-circle"></i> Note: <span className="heroku">Heroku App <i className={this.state.isCollapseOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down'}></i></span>
+                            </CardSubtitle> 
+                            <Collapse className="heroku-msg" isOpen={this.state.isCollapseOpen}>
+                                <Alert color="warning">This is a heroku app, it may take a while to load</Alert>
+                            </Collapse>
+                        </>
+                    : null }
                     <CardSubtitle className="tech-header" style={{marginBottom: "10px"}} tag="h6">Technologies used: </CardSubtitle>
                     <div className="tech-flex d-flex">
                         {this.renderTechUsed()}
