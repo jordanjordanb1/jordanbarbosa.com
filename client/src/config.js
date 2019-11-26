@@ -1,7 +1,11 @@
-const isProd = () => {
+export const isProd = () => {
     const prod = false // REMINDER: Set to true before building
 
-    if (prod) {
+    return prod
+}
+
+const URL = () => {
+    if (isProd()) {
         return 'https://jordanbarbosa.com'
     } else {
         return 'http://localhost:3001'
@@ -9,5 +13,5 @@ const isProd = () => {
 }
 
 export const config = {
-    url: isProd()
+    url: URL()
 }
