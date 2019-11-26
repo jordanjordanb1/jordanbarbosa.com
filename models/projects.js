@@ -22,7 +22,8 @@ const projectSchema = new Schema({
         type: String,
         require: true
     },
-    tech: [String]
+    tech: [String],
+    isHeroku: Boolean
 })
 
 const Projects = mongoose.model('Project', projectSchema)
