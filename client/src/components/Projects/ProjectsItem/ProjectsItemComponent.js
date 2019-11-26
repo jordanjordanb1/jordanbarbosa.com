@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Card, CardImg, CardText, CardBody, CardTitle, ButtonGroup, CardSubtitle } from 'reactstrap'
-import { config } from '../../Shared/config'
+import { config } from '../../../config'
 
 import './ProjectsItemComponent.css'
 

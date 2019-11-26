@@ -17,7 +17,7 @@ class MainComponent extends PureComponent {
             <>
                 { this.props.isProjectsOpen ? <Projects /> : null}
                 { this.props.isContactOpen ? <ContactForm /> : null }
-                    <Home isContactOpen={this.props.isContactOpen} />
+                <Home isContactOpen={this.props.isContactOpen} />
             </>
         )
     }

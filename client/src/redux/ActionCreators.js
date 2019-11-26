@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { config } from '../components/Shared/config'
+import { config } from '../config'
 
 import React from 'react'
 import { ButtonGroup } from 'reactstrap'
