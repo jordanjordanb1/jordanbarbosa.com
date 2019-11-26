@@ -3,7 +3,7 @@ const express = require('express'),
       logger = require('morgan'),
       cors = require('cors'),
       mongoose = require('mongoose'),
-      __CONFIG__ = require('./config'),
+      __CONFIG__ = require('./config');
 
 const indexRouter = require('./routes/index'),
       mailRouter = require('./routes/mail'),
@@ -26,18 +26,15 @@ if (process.env.PROD)
 else
     app.use(cors({ origin: 'http://localhost:3000' }));
 
-
 // Enables logger in development mode
 if (!process.env.PROD)
     app.use(logger('dev'));
 
-// Body parser setup
 app.use(express.json({limit: '12mb'}))
 app.use(express.urlencoded({limit: '12mb', extended: true }))
 
 // Static path
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 /* Routes  */
 app.use('/', indexRouter);
