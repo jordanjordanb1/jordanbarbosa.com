@@ -1,6 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 
-export const projects = (state = { isProjectsOpen: true, projects: [] }, action) => {
+export const projects = (state = { isProjectsOpen: false, projects: [] }, action) => {
     switch(action.type) {
         case ActionTypes.SHOW_PROJECTS:
             return {...state, isProjectsOpen: true}
