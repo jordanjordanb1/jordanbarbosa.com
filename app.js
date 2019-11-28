@@ -24,7 +24,7 @@ if (process.env.PROD) {
 if (process.env.PROD)
     app.use(cors({ origin: 'https://jordanbarbosa.com' }))
 else
-    app.use(cors({ origin: 'http://localhost:3000' }));
+    app.use(cors({ origin: '*' }));
 
 // Enables logger in development mode
 if (!process.env.PROD)

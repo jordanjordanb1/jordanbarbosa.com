@@ -47,11 +47,9 @@ class ProjectsComponent extends PureComponent {
                         </Row>
                         <Row>
                             <Col className="d-flex flex-row justify-content-center" style={{flexWrap: "wrap"}} xs="12">
-                                <Row>
                                 { this.props.projects.map((item, index) => {
                                     return <ProjectsItem key={index} values={item} />
                                 }) }
-                                </Row>
                             </Col>
                         </Row>
                     </Container>
