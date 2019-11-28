@@ -36,10 +36,22 @@ class ProjectsComponent extends PureComponent {
                     <ExitButton toggleProjects={this.toggleProjects} />
                     <Container fluid={true}>
                         <Row>
+                            <Col className="text-center mt-3" xs="12" >
+                                <h1>My Projects</h1>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs="12" md={{ span: 8, offset: 2 }}>
+                                <hr />
+                            </Col>
+                        </Row>
+                        <Row>
                             <Col className="d-flex flex-row justify-content-center" style={{flexWrap: "wrap"}} xs="12">
+                                <Row>
                                 { this.props.projects.map((item, index) => {
                                     return <ProjectsItem key={index} values={item} />
                                 }) }
+                                </Row>
                             </Col>
                         </Row>
                     </Container>
