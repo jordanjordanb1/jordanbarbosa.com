@@ -7,19 +7,19 @@
 }
 
 .opening-projects {
-    animation: showProjects 1s ease-in;
+    animation: showProjects .5s ease-in forwards;
 }
 
 .closing-projects {
-    animation: hideProjects 2s ease-out;
+    animation: hideProjects .5s ease-out forwards;
 }
 
 @keyframes showProjects {
-    from { transform: translateY(-6000px) }
-    to { transform: translateY(0px) }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes hideProjects {
-    from { transform: translateY(0px) }
-    to { transform: translateY(-6000px) }
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
