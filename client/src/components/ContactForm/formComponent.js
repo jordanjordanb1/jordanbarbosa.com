@@ -17,7 +17,7 @@ const renderField = ({ input, placeholder, type, meta: { touched, error } }) => 
         type={type} 
         id={input.name}
         className={["form-control contact-input "] + (error && touched ? 'input-error' : '') } />
-        {touched && ((error && <div className="text-danger error-box"><i class="fas fa-exclamation-triangle"></i> {error}</div>))}
+        {touched && ((error && <div className="text-danger error-box"><i className="fas fa-exclamation-triangle"></i> {error}</div>))}
     </>
 )
 
