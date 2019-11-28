@@ -2,7 +2,7 @@ import * as ActionTypes from './ActionTypes';
 import { config } from '../config'
 
 import React from 'react'
-import { ButtonGroup } from 'reactstrap'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import axios from 'axios'
 
 import Message from '../components/Shared/Message/MessageComponent'

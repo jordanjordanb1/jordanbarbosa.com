@@ -2,7 +2,7 @@ import React from 'react'
 
 import './MonitorBaseComponent.css'
 
-export default function monitorBaseComponent() {
+export default function MonitorBase() {
     return (
         <div className="monitorbase-container">
             <div className="monitorbase-stand">

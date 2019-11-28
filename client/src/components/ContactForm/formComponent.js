@@ -1,7 +1,11 @@
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 
-import { Form, FormGroup, Label, Button, ButtonGroup } from 'reactstrap'
+import Form from 'react-bootstrap/Form'
+import FormGroup from 'react-bootstrap/FormGroup'
+import Label from 'react-bootstrap/FormLabel'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 const required = value => value ? undefined : 'Required'
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Invalid email address' : undefined
@@ -27,11 +31,9 @@ const renderTextArea = ({ input, placeholder, meta: { touched, error } }) => ( /
     </>
 )
 
-const contactForm = props => {
-    const { handleSubmit, reset, valid, pristine, submitting } = props
-
+const contactForm = ({ onSubmit, handleSubmit, reset, valid, pristine, submitting }) => {
     return (
-        <Form onSubmit={handleSubmit(props.onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup>
                 <Label htmlFor="name">Name</Label>
                 <Field placeholder="Your name" name="name" id="name" component={renderField} type="text" validate={[required]} />
