@@ -37,7 +37,7 @@ export default class ProjectsItemComponent extends PureComponent {
 
         return (
             <Card className="project-card">
-                <Card.Img top src={`${config.url}/static/media/projects/${values.img}`} alt={values.name} />
+                <Card.Img variant="top" src={`${config.url}/static/media/projects/${values.img}`} alt={values.name} />
                 <Card.Body>
                     { values.isHeroku ?     
                         <>
