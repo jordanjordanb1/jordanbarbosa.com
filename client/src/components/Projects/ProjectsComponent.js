@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col'
 import ExitButton from './ExitButton/ExitButtonComponent'
 import './ProjectsComponent.css'
 import ProjectsItem from './ProjectsItem/ProjectsItemComponent'
+import ProjectsInfo from './ProjectsInfo/ProjectsInfo'
 
 const mapStateToProps = state => ({
     projects: state.projects.projects
@@ -17,15 +18,37 @@ class ProjectsComponent extends PureComponent {
         super(props)
 
         this.state = {
-            isShown: true
+            isShown: true,
+            isProjectsInfoShown: false,
+            clickedProject: null
         }
 
         this.toggleProjects = this.toggleProjects.bind(this)
+        this.openProjectsInfo = this.openProjectsInfo.bind(this)
+        this.hideProjectInfo = this.hideProjectInfo.bind(this)
     }
 
+
+    //  Turns the isSHhown in state to false so animations run
     toggleProjects() {
         return this.setState({
             isShown: false
+        })
+    }
+
+    // Opens the info card and sends valid project to component
+    openProjectsInfo(project) {
+        this.setState({
+            isProjectsInfoShown: true,
+            clickedProject: project
+        })
+    }
+
+    // Hides the info card and empties the clickedProject
+    hideProjectInfo() {
+        this.setState({
+            isProjectsInfoShown: false,
+            clickedProject: null
         })
     }
 
@@ -33,6 +56,7 @@ class ProjectsComponent extends PureComponent {
         return (
             <>
                 <div className={!this.state.isShown ? 'projects-container closing-projects' : 'opening-projects projects-container'}>
+                    { this.state.isProjectsInfoShown ? <ProjectsInfo project={this.state.clickedProject} hide={this.hideProjectInfo} /> : null }
                     <ExitButton toggleProjects={this.toggleProjects} />
                     <Container fluid={true}>
                         <Row>
@@ -48,7 +72,7 @@ class ProjectsComponent extends PureComponent {
                         <Row>
                             <Col className="d-flex flex-row justify-content-center" style={{flexWrap: "wrap"}} xs="12">
                                 { this.props.projects.map((item, index) => {
-                                    return <ProjectsItem key={index} values={item} />
+                                    return <ProjectsItem key={index} values={item} click={this.openProjectsInfo} />
                                 }) }
                             </Col>
                         </Row>

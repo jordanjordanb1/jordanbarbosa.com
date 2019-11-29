@@ -35,7 +35,7 @@ export default class ProjectsItemComponent extends PureComponent {
 
 
     render() {
-        const { values: { img, name } } = this.props
+        const { values: { img, name }, click, values } = this.props
 
         return (
             <div className="project-item">
@@ -46,7 +46,7 @@ export default class ProjectsItemComponent extends PureComponent {
                     </div>
                 </div>
                 <div className="project-item-overlay overlay-bottom d-flex justify-content-center align-items-center">
-                    <Button>Learn More</Button>
+                    <Button onClick={() => click(values)}>Learn More</Button>
                 </div>
                 <Image src={`${config.url}/static/media/projects/${img}`} alt={name} />
                 <div className="hover-me d-flex justify-content-center align-items-center">

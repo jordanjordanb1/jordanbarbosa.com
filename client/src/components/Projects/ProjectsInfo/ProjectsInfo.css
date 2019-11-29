@@ -1,0 +1,100 @@
+.project-info-overlay {
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999999999999;
+    position: fixed; top: 0; left: 0;
+    overflow: hidden;
+
+    animation: showOverlay .3s ease-in forwards;
+}
+
+.project-info-overlay .project-card {
+    background: rgb(240, 240, 240);
+    width: 720px; height: auto;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
+    position: relative;
+
+    animation: showCard .3s ease-in forwards;
+}
+
+.project-card .project-info-exit {
+    position: absolute; top: 0; right: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    background: rgba(50, 50, 50, 0.1);
+    transition: background .3s;
+}
+
+.project-card .project-info-exit:hover {
+    background: rgba(30, 30, 30, 0.2)
+}
+
+.project-card .project-info-exit:active .project-info-overlay {
+    opacity: 0;
+}
+
+.project-card .project-info-exit i {
+    font-size: 1.5em;
+}
+
+.project-info-overlay .project-card img {
+    border-bottom: 1px solid rgb(200, 200, 200);
+    height: 405px; width: 100%;
+}
+
+.project-info-overlay .tech-item {
+    background: rgb(50, 50, 50);
+    color: white;
+    font-size: .8em;
+    padding: 5px 10px;
+}
+
+@keyframes showCard {
+    0% { opacity: 0; transform: scale(.5, .5); }
+    100% { opacity: 1; transform: scale(1, 1); }
+}
+
+@keyframes showOverlay {
+    0% { opacity: 0; }
+    100% { opacity: 1; }    
+}
+
+@keyframes hideCard {
+    0% { opacity: 1; transform: scale(1, 1); }
+    100% { opacity: 0; transform: scale(.5, .5); }
+}
+
+@keyframes hideOverlay {
+    0% { opacity: 1; }
+    100% { opacity: 0; }    
+}
+
+@media screen and (max-width: 760px) {
+    .project-info-overlay .project-card {
+        width: 500px;
+    }
+
+    .project-info-overlay .project-card img {
+        height: 281px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .project-info-overlay .project-card {
+        width: 400px;
+    }
+
+    .project-info-overlay .project-card img {
+        height: 225px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .project-info-overlay .project-card {
+        width: 300px;
+    }
+
+    .project-info-overlay .project-card img {
+        height: 169px;
+    }
+}
