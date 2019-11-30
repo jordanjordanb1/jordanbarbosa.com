@@ -7,6 +7,7 @@ import logger from 'redux-logger';
 import { contact } from './contact'
 import { console } from './console'
 import { projects } from './projects'
+import { login } from './login'
 
 export const ConfigureDevStore = () => {
     // This is for the redux Devtools to work correctly. Remove before building
@@ -18,6 +19,7 @@ export const ConfigureDevStore = () => {
             contact,
             console,
             projects,
+            login,
             form: formReducer
         }),
         composeEnhancers(applyMiddleware(thunk, logger)) // Remove composeEnhancer before building, as well as redux thunk middleware

@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import { contact } from './contact'
 import { console } from './console'
 import { projects } from './projects'
+import { login } from './login'
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -13,6 +14,7 @@ export const ConfigureStore = () => {
             contact,
             console,
             projects,
+            login,
             form: formReducer
         }),
         applyMiddleware(thunk)

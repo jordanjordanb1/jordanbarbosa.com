@@ -282,3 +282,8 @@ export const loadProjects = () => (dispatch, getState) => {
 
     return true // Will return true because projects in the store isn't empty, so there's no need to request it from the server.
 }
+
+// Shows or hide login page
+export const toggleLogin = () => ({
+    type: ActionTypes.TOGGLE_LOGIN
+})
