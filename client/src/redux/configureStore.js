@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { reducer as formReducer } from 'redux-form'
-import { isProd } from '../config'  
+import { isProd } from '../config'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
@@ -10,15 +11,15 @@ import { console } from './console'
 import { projects } from './projects'
 import { login } from './login'
 
-let middleware = []
-
-if (isProd) {
-    middleware = [...middleware, thunk]
-} else {
-    middleware = [...middleware, thunk, logger]
-}
-
 export const ConfigureStore = () => {
+    let middleware = []
+
+    if (isProd) {
+        middleware = [...middleware, thunk]
+    } else {
+        middleware = [...middleware, thunk, logger]
+    }
+
     const store = createStore(
         combineReducers({
             contact,
@@ -27,7 +28,7 @@ export const ConfigureStore = () => {
             login,
             form: formReducer
         }),
-        applyMiddleware(...middleware)
+        composeWithDevTools(applyMiddleware(...middleware))
     )
 
     return store
