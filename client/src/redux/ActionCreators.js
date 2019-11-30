@@ -167,7 +167,7 @@ export const executeCommand = command => dispatch => {
         case 'contact':
             setTimeout(() => {
                 dispatch(insertMessage('Showing contact form...'))
-                dispatch(showContact()) // After every typed command, there needs to be this. This will insert a new input into the command box
+                dispatch(showContact())
             }, 100)
             return true; // Returns true so console doesn't think an error occured
         case 'code':
@@ -183,7 +183,7 @@ export const executeCommand = command => dispatch => {
         case 'projects':
             dispatch(insertMessage('Showing projects page...'))
             setTimeout(() => {
-                dispatch(showProjects()) // After every typed command, there needs to be this. This will insert a new input into the command box
+                dispatch(showProjects()) 
             }, 100)
             return true; // Returns true so console doesn't think an error occured
         case 'resume':
@@ -198,6 +198,12 @@ export const executeCommand = command => dispatch => {
                 dispatch(insertInput()) // After every typed command, there needs to be this. This will insert a new input into the command box
             }, 100)
             return true // Returns true so console doesn't think an error occured
+        case 'login':
+            dispatch(insertMessage('Showing login page...'))
+            setTimeout(() => {
+                dispatch(toggleLogin())
+            }, 100)
+            return true; // Returns true so console doesn't think an error occured
         default:
             return false; // Returns false so console knows error occured
     }
@@ -287,3 +293,10 @@ export const loadProjects = () => (dispatch, getState) => {
 export const toggleLogin = () => ({
     type: ActionTypes.TOGGLE_LOGIN
 })
+
+export const loginUser = async (username, password) => {
+    await axios.post(`${config.url}/login`, { username, password })
+               .then(res => {
+                    console.log(res)
+               }).catch(e => console.error(e))
+}

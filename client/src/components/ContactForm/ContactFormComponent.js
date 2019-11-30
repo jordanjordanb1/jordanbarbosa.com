@@ -53,7 +53,7 @@ class ContactFormComponent extends PureComponent {
 
     render() {
         return (
-            <Modal isOpen={true} toggle={() => { this.hideModal() }}>
+            <Modal isOpen={true} toggle={() => this.hideModal() }>
                 <ModalHeader toggle={() => this.hideModal()}>Contact Me</ModalHeader>
 
                 <ModalBody>
