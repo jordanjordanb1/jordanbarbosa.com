@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import './TerminalBodyComponent.css'
 
-import { showContact, initialize } from '../../../../../../../redux/ActionCreators'
+import { initialize } from '../../../../../../../redux/ActionCreators'
 
 const mapStateToProps = state => ({
     console: state.console.activeList,
@@ -11,7 +11,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    showContact: () => dispatch(showContact()),
     initialize: () => dispatch(initialize())
 })
 

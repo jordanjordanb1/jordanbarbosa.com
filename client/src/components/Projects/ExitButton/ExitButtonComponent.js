@@ -18,7 +18,7 @@ class ExitButtonComponent extends PureComponent {
         this.props.insertInput() // Inserts new input
         setTimeout(() => {
             this.props.hideProjects() // Hides the project after a delay so the animation can play
-        }, 1000)
+        }, 500)
     }
     
     render() {

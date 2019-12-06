@@ -1,6 +1,8 @@
 import * as ActionTypes from './ActionTypes';
 import { config } from '../config'
 
+import { push } from 'connected-react-router'
+
 import React from 'react'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import axios from 'axios'
@@ -25,16 +27,15 @@ export const hideContact = () => ({
 
 // Shows project component
 export const showProjects = () => dispatch => {
-    dispatch({
-        type: ActionTypes.SHOW_PROJECTS
-    })
     dispatch(loadProjects()) // Loads project from MongoDB into store
+
+    dispatch(push('/projects'))
 }
 
 // Hides project component
-export const hideProjects = () => ({
-    type: ActionTypes.HIDE_PROJECTS
-})
+export const hideProjects = () => dispatch => {
+    dispatch(push('/'))
+}
 
 // Runs when page is open
 export const initialize = () => dispatch => {
@@ -294,9 +295,26 @@ export const toggleLogin = () => ({
     type: ActionTypes.TOGGLE_LOGIN
 })
 
-export const loginUser = async (username, password) => {
-    await axios.post(`${config.url}/login`, { username, password })
-               .then(res => {
-                    console.log(res)
-               }).catch(e => console.error(e))
+// Puts token jwt token in redux store
+export const setToken = token => ({
+    type: ActionTypes.SET_TOKEN,
+    payload: token
+})
+
+// Sends type user to server for check
+export const loginUser = values => dispatch => {
+    if (values) {
+        axios.post(`${config.url}/users/login`, values)
+            .then(res => {
+                const { token } = res.data
+
+                if (token) {
+                    dispatch(setToken(token))
+                }
+
+                return true
+            }).catch(e => console.error(e))
+    }
+
+    return false
 }

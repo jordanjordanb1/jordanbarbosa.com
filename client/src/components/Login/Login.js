@@ -7,17 +7,17 @@ import { connect } from 'react-redux'
 
 const mapDispatchToProps = dispatch => ({
     toggleLogin: () => dispatch(toggleLogin()),
-    loginUser: () => dispatch(loginUser()),
+    loginUser: values => dispatch(loginUser(values)),
     insertMessage: message => dispatch(insertMessage(message)),
-    insertInput: () => dispatch(insertInput()),
+    insertInput: () => dispatch(insertInput())
 })
 
 class Login extends PureComponent {
     // Handles the submitting of the login form after validation
-    onSubmit = async ({ username, password }) => {
+    onSubmit = async values => {
         const { loginUser } = this.props
-
-        await loginUser({ username, password })
+              
+        await loginUser(values) // Sends values to dispatch
     }
     
     // Unloads the contact component

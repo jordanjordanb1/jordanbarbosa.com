@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import ExitButton from './ExitButton/ExitButtonComponent'
-import './ProjectsComponent.css'
+import './Projects.css'
 import ProjectsItem from './ProjectsItem/ProjectsItemComponent'
 import ProjectsInfo from './ProjectsInfo/ProjectsInfo'
 
