@@ -312,9 +312,16 @@ export const loginUser = values => dispatch => {
                     dispatch(setToken(token))
                 }
 
+                dispatch(toggleAuth())
+                dispatch(push('/dashboard'))
                 return true
             }).catch(e => console.error(e))
     }
 
     return false
 }
+
+// Sets user auth to true or false
+export const toggleAuth = () => ({
+    type: ActionTypes.TOGGLE_AUTH
+})

@@ -13,6 +13,7 @@ import { contact } from './contact'
 import { console } from './console'
 import { projects } from './projects'
 import { login } from './login'
+import { user } from './user'
 
 
 export const history = createBrowserHistory()
@@ -33,6 +34,7 @@ export const ConfigureStore = () => {
             projects,
             login,
             form: formReducer,
+            user: user,
             router: connectRouter(history)
         }),
         composeWithDevTools(applyMiddleware(...middleware))
