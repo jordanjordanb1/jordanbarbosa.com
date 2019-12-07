@@ -34,7 +34,7 @@ export const ConfigureStore = () => {
             projects,
             login,
             form: formReducer,
-            user: user,
+            user,
             router: connectRouter(history)
         }),
         composeWithDevTools(applyMiddleware(...middleware))
