@@ -306,20 +306,33 @@ export const loginUser = values => dispatch => {
     if (values) {
         axios.post(`${config.url}/users/login`, values)
             .then(res => {
-                const { token } = res.data
+                const { token, success } = res.data
 
-                if (token) {
+                if (token && success) {
                     dispatch(setToken(token))
+                    dispatch(toggleAuth())
+                    dispatch(push('/dashboard'))
+
+                    return true
                 }
 
-                dispatch(toggleAuth())
-                dispatch(push('/dashboard'))
-                return true
+
+                if (!success) {
+                    dispatch(setLoginError(res.data))
+                    return false
+                }
+
+                return false
             }).catch(e => console.error(e))
     }
 
     return false
 }
+
+export const setLoginError = response => ({
+    type: ActionTypes.SET_LOGIN_ERROR,
+    payload: response
+})
 
 // Sets user auth to true or false
 export const toggleAuth = () => ({

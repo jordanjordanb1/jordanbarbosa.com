@@ -5,6 +5,11 @@ import LoginForm from './LoginForm'
 import { toggleLogin, loginUser, insertMessage, insertInput } from '../../redux/ActionCreators'
 import { connect } from 'react-redux'
 
+const mapStateToProps = state => ({
+    success: state.login.success,
+    errMsg: state.login.errMsg
+})
+
 const mapDispatchToProps = dispatch => ({
     toggleLogin: () => dispatch(toggleLogin()),
     loginUser: values => dispatch(loginUser(values)),
@@ -30,6 +35,8 @@ class Login extends PureComponent {
     }
 
     render() {
+        const { success, errMsg } = this.props
+
         return (
             <Modal show onHide={() => this.hideModal()} className="login-container">
                 <Modal.Header closeButton>
@@ -37,6 +44,8 @@ class Login extends PureComponent {
                 </Modal.Header>
 
                 <Modal.Body>
+                    { !success && errMsg ? (<div className="form-error text-center mb-2"> {errMsg} </div>) : null }
+
                     <LoginForm onSubmit={this.onSubmit} />
                 </Modal.Body>
             </Modal>
@@ -44,4 +53,4 @@ class Login extends PureComponent {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
