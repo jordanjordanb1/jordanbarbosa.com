@@ -30,7 +30,6 @@ usersRouter.post('/register', async (req, res, next) => {
 
 usersRouter.post('/login', (req, res, next) => {
     try {
-        console.log(req.body)
         auth.verifyUser(req, res, next) // Verifies if user exists
     } catch(e) {
         next(e)

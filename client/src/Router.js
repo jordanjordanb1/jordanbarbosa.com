@@ -1,19 +1,21 @@
 import React, { PureComponent } from 'react'
 import { Route, Switch } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import Main from './components/MainComponent'
 import Projects from './components/Projects/Projects';
+import Dashboard from './components/Dashboard/Dashboard'
 
 class Router extends PureComponent {
     renderDashboard = () => {
         const { isAuthenticated, token } = this.props
 
         if (isAuthenticated && token) {
-            return <div>User is authed</div>
+            return <Dashboard />
         }
 
-    return <div>User's not authed<br />{isAuthenticated}{token}</div>
+        return <Dashboard /> /* <Redirect to='/' /> */
     }
 
     render() {
