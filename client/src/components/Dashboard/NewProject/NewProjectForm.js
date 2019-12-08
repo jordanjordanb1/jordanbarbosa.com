@@ -55,7 +55,7 @@ const renderFile = ({ input, type }) => ( // Renders the inputs
             type={type}
             id={input.name}
             value={undefined}
-            accept=".jpg/.jpeg/.png"
+            accept=".jpg, .jpeg, .png"
         />       
     </>
 )
