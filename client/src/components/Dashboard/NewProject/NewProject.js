@@ -1,10 +1,19 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import NewProjectForm from './NewProjectForm'
 import './NewProject.css'
 
-export default class NewProject extends PureComponent {
-    handleSubmit = (e) => {
-        e.preventDefault()
+import { createNewProject } from '../../../redux/ActionCreators'
+
+const mapDispatchToProps = dispatch => ({
+    createNewProject: values => dispatch(createNewProject(values))
+})
+
+class NewProject extends PureComponent {
+    handleSubmit = formValues => {
+        const { createNewProject } = this.props
+
+        createNewProject(formValues)
     }
     
     render() {
@@ -15,3 +24,5 @@ export default class NewProject extends PureComponent {
         )
     }
 }
+
+export default connect(null, mapDispatchToProps)(NewProject)
