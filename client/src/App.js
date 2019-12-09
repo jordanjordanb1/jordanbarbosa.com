@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react';
 import { Provider } from  'react-redux'
 import ConfigureStore, { history } from './redux/configureStore'
 import { ConnectedRouter } from 'connected-react-router'
-import Router from './Router'
+import { Switch, Route } from 'react-router-dom'
+import Main from './components/Home/HomeComponent'
+import Projects from './components/Projects/Projects'
 
 import './App.css';
 
@@ -14,7 +16,10 @@ export default class App extends PureComponent {
         return (
             <Provider store={store}>
                 <ConnectedRouter history={history}>
-                    <Router />
+                    <Switch>
+                        <Route exact path="/" component={Main} />
+                        <Route path="/projects" component={Projects} />
+                    </Switch>
                 </ConnectedRouter>
             </Provider>
         )
