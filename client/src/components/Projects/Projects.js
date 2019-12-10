@@ -10,7 +10,9 @@ import ProjectsItem from './ProjectsItem/ProjectsItemComponent'
 import ProjectsInfo from './ProjectsInfo/ProjectsInfo'
 
 const mapStateToProps = state => ({
-    projects: state.projects.projects
+    projects: state.projects.projects,
+    isAuthenticated: state.user.isAuthenticated,
+    token: state.user.token
 })
 
 class ProjectsComponent extends PureComponent {
@@ -22,22 +24,18 @@ class ProjectsComponent extends PureComponent {
             isProjectsInfoShown: false,
             clickedProject: null
         }
-
-        this.toggleProjects = this.toggleProjects.bind(this)
-        this.openProjectsInfo = this.openProjectsInfo.bind(this)
-        this.hideProjectInfo = this.hideProjectInfo.bind(this)
     }
 
 
     //  Turns the isSHhown in state to false so animations run
-    toggleProjects() {
+    toggleProjects = () => {
         return this.setState({
             isShown: false
         })
     }
 
     // Opens the info card and sends valid project to component
-    openProjectsInfo(project) {
+    openProjectsInfo = project => {
         this.setState({
             isProjectsInfoShown: true,
             clickedProject: project
@@ -45,7 +43,7 @@ class ProjectsComponent extends PureComponent {
     }
 
     // Hides the info card and empties the clickedProject
-    hideProjectInfo() {
+    hideProjectInfo = () => {
         this.setState({
             isProjectsInfoShown: false,
             clickedProject: null
@@ -53,10 +51,13 @@ class ProjectsComponent extends PureComponent {
     }
 
     render() {
+        const { isAuthenticated, token, projects } = this.props,
+              { isProjectsInfoShown, clickedProject } = this.state
+
         return (
             <>
                 <div className={!this.state.isShown ? 'projects-container closing-projects' : 'opening-projects projects-container'}>
-                    { this.state.isProjectsInfoShown ? <ProjectsInfo project={this.state.clickedProject} hide={this.hideProjectInfo} /> : null }
+                    { isProjectsInfoShown ? <ProjectsInfo project={clickedProject} hide={this.hideProjectInfo} /> : null }
                     <ExitButton toggleProjects={this.toggleProjects} />
                     <Container fluid={true}>
                         <Row>
@@ -71,9 +72,11 @@ class ProjectsComponent extends PureComponent {
                         </Row>
                         <Row>
                             <Col className="d-flex flex-row justify-content-center flex-wrap" xs="12">
-                                { this.props.projects.map((item, index) => {
+                                { projects.map((item, index) => {
                                     return <ProjectsItem key={index} values={item} click={this.openProjectsInfo} />
                                 }) }
+
+                                { isAuthenticated && token ? <ProjectsItem mode="add" /> : "no hello" }
                             </Col>
                         </Row>
                     </Container>
