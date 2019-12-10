@@ -8,11 +8,18 @@ import ExitButton from './ExitButton/ExitButtonComponent'
 import './Projects.css'
 import ProjectsItem from './ProjectsItem/ProjectsItemComponent'
 import ProjectsInfo from './ProjectsInfo/ProjectsInfo'
+import { toggleNewProject } from '../../redux/ActionCreators'
+import NewProject from './NewProject/NewProject'
 
 const mapStateToProps = state => ({
     projects: state.projects.projects,
     isAuthenticated: state.user.isAuthenticated,
-    token: state.user.token
+    token: state.user.token,
+    isNewProjectOpen: state.projects.isNewProjectOpen
+})
+
+const mapDispatchToProps = dispatch => ({
+    toggleNewProject: () => dispatch(toggleNewProject())
 })
 
 class ProjectsComponent extends PureComponent {
@@ -51,13 +58,15 @@ class ProjectsComponent extends PureComponent {
     }
 
     render() {
-        const { isAuthenticated, token, projects } = this.props,
+        const { isAuthenticated, token, projects, toggleNewProject, isNewProjectOpen } = this.props,
               { isProjectsInfoShown, clickedProject } = this.state
 
         return (
             <>
                 <div className={!this.state.isShown ? 'projects-container closing-projects' : 'opening-projects projects-container'}>
                     { isProjectsInfoShown ? <ProjectsInfo project={clickedProject} hide={this.hideProjectInfo} /> : null }
+                    { isNewProjectOpen ? <NewProject /> : null }
+
                     <ExitButton toggleProjects={this.toggleProjects} />
                     <Container fluid={true}>
                         <Row>
@@ -76,7 +85,7 @@ class ProjectsComponent extends PureComponent {
                                     return <ProjectsItem key={index} values={item} click={this.openProjectsInfo} />
                                 }) }
 
-                                { isAuthenticated && token ? <ProjectsItem editMode={true} /> : null }
+                                { isAuthenticated && token ? <ProjectsItem editMode={true} toggleNewProject={toggleNewProject} /> : <ProjectsItem editMode={true} toggleNewProject={toggleNewProject} /> }
                             </Col>
                         </Row>
                     </Container>
@@ -86,4 +95,4 @@ class ProjectsComponent extends PureComponent {
     }
 }
 
-export default connect(mapStateToProps)(ProjectsComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsComponent)

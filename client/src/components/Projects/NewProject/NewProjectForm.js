@@ -4,7 +4,6 @@ import { reduxForm, Field } from 'redux-form'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import Col from 'react-bootstrap/Col'
 
 const required = value => value ? undefined : 'Required'
 
@@ -72,63 +71,52 @@ const renderSwitch = ({ input, label }) => ( // Renders the inputs
 
 const contactForm = ({ onSubmit, handleSubmit, reset, valid, pristine, submitting }) => {
     return (
-        <Form onSubmit={handleSubmit(onSubmit)}>
-            <h1 className="text-center mt-2">New project</h1>
-
-            <br />
-
-            <Form.Row>
-                <Form.Group as={Col} xs="12" md="6">
+        <Form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
+            <Form.Group > 
                     <Form.Label htmlFor="name">Project Name</Form.Label>
                     <Field placeholder="Enter project name" name="name" component={renderField} type="text" validate={required} />
-                </Form.Group>
+            </Form.Group>
 
-                <Form.Group as={Col} xs="12" md="6">
+            <Form.Group>
                     <Form.Label htmlFor="tech">Tech Used</Form.Label>
                     <Field type="text" placeholder="Enter technologies used" name="tech" component={renderFieldWithSub} validate={required} />
-                </Form.Group>
-            </Form.Row>
+            </Form.Group>
 
-            <Form.Row>
-                <Form.Group as={Col} xs="12" md="6">
+            <Form.Group>
                     <Form.Label htmlFor="github">Github URL</Form.Label>
                     <Field type="url" placeholder="Enter github url" name="github" component={renderField} validate={required} /> 
-                </Form.Group>
+            </Form.Group>
 
-                <Form.Group as={Col} xs="12" md="6">
+            <Form.Group>
                     <Form.Label htmlFor="url">Project URL</Form.Label>
                     <Field type="url" placeholder="Enter working project url" name="url" component={renderField} />
-                </Form.Group>
-            </Form.Row>
+            </Form.Group>
 
-            <Form.Row>
-                <Form.Group as={Col} xs="12" md="6">
+            <Form.Group>
                     <Form.Label htmlFor="img">Upload Project Image</Form.Label>
                     <Field type="file" name="img" component={renderFile} validate={required} />
-                </Form.Group>
+            </Form.Group>
 
-
-                <Form.Group as={Col} xs="12" md="6">
-                    <br />
+            <Form.Group>
                     <Field label="Is this a Heroku app?" name="isHeroku" component={renderSwitch} />
-                </Form.Group>
-            </Form.Row>
+            </Form.Group>
 
-            <Form.Row>
+            <Form.Group>
                 <Form.Label htmlFor="desc">Project Description</Form.Label>
                 <Field as="textarea" name="desc" component={renderTextArea} />
-            </Form.Row><br />
+            </Form.Group><br />
 
-            <Form.Row>
+            <Form.Group>
                 <ButtonGroup>
                     <Button type="submit" value="reset" color="danger" disabled={pristine || submitting} onClick={reset}><i className="fas fa-sync-alt"></i> Reset</Button>
                     <Button type="submit" value="submit" color="primary" disabled={!valid || pristine || submitting}> Submit</Button>
                 </ButtonGroup>
-            </Form.Row>
+            </Form.Group>
         </Form>
     )
 }
 
 export default reduxForm({
-    form: 'newProject'
+    form: 'newProject',
+    multipartForm: true
 })(contactForm)

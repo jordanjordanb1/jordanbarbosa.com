@@ -10,6 +10,8 @@ import axios from 'axios'
 import Message from '../components/Shared/Message/MessageComponent'
 import Input from '../components/Shared/Input/InputComponent'
 
+axios.defaults.baseURL = config.url // Sets base URL in axios
+
 // List of predefined variables
 const __CONFIG__ = {
     initialMessage: <>Please type '<span className="command-tip">start</span>' to begin, or type '<span className="command-tip">help</span>' for a list of commands.</>
@@ -39,7 +41,6 @@ export const hideProjects = () => dispatch => {
 
 // Runs when page is open
 export const initialize = () => dispatch => {
-    dispatch(hideProjects()) // Hides project component
     dispatch(hideContact()) // Hides contact component
     dispatch(emptyConsole()) // Empties the console
     dispatch(insertMessage(__CONFIG__.initialMessage)) // Inserts the initial message
@@ -250,7 +251,7 @@ export const sendEmail = values => dispatch => {
     if (!values) { // Checks to make sure a value was set
         return false // Returns false if no value was set
     } else {
-        axios.post(`${config.url}/mail`, { // Sends a POST to the server with the values from contact form
+        axios.post(`/mail`, { // Sends a POST to the server with the values from contact form
             formData: values
         }).then(res => {
             if (res.data.success) {
@@ -277,7 +278,7 @@ export const loadProjects = () => (dispatch, getState) => {
     const projects = getState().projects.projects // Loads the projects array from the store
 
     if (projects.length === 0) { // Checks to see if the array is empty
-        axios.get(`${config.url}/projects`) // If it's empty, then load from the server
+        axios.get(`/projects`) // If it's empty, then load from the server
         .then(projects => {
             if (projects) { // If projects doesn't come back empty, put the projects into the store
                 dispatch(setProjects(projects.data))
@@ -304,14 +305,13 @@ export const setToken = token => ({
 // Sends type user to server for check
 export const loginUser = values => dispatch => {
     if (values) {
-        axios.post(`${config.url}/users/login`, values)
+        axios.post(`/users/login`, values)
             .then(res => {
                 const { token, success } = res.data
 
                 if (token && success) {
                     dispatch(setToken(token))
                     dispatch(toggleAuth())
-                    dispatch(push('/dashboard'))
 
                     return true
                 }
@@ -338,3 +338,22 @@ export const setLoginError = response => ({
 export const toggleAuth = () => ({
     type: ActionTypes.TOGGLE_AUTH
 })
+
+// Toggles form to create a new project
+export const toggleNewProject = () => ({
+    type: ActionTypes.TOGGLE_NEW_PROJECT
+})
+
+// Submits the new project to backend
+export const createNewProject = values => (dispatch, getState) => {
+    const { token } = getState().user,
+            config = { headers: {
+                'Authorization': `Bearer ${token}`
+            }}
+
+    if (values) {
+        axios.post(`/projects`, values, config)
+    }
+
+    return false
+}
