@@ -76,7 +76,7 @@ class ProjectsComponent extends PureComponent {
                                     return <ProjectsItem key={index} values={item} click={this.openProjectsInfo} />
                                 }) }
 
-                                { isAuthenticated && token ? <ProjectsItem mode="add" /> : "no hello" }
+                                { isAuthenticated && token ? <ProjectsItem editMode={true} /> : null }
                             </Col>
                         </Row>
                     </Container>
