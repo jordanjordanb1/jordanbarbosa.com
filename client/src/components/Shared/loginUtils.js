@@ -4,7 +4,7 @@ import { config } from '../../config'
 axios.defaults.baseURL = config.url // Sets base URL in axios
 
 // Helper function to set auth header with token
-const setAuthHeader = token => ({
+export const setAuthHeader = token => ({
     headers: { authorization: `Bearer ${token}` }
 })
 
