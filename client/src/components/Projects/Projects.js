@@ -85,7 +85,7 @@ class ProjectsComponent extends PureComponent {
                                     return <ProjectsItem key={index} values={item} click={this.openProjectsInfo} />
                                 }) }
 
-                                { isAuthenticated && token ? <ProjectsItem editMode={true} toggleNewProject={toggleNewProject} /> : <ProjectsItem editMode={true} toggleNewProject={toggleNewProject} /> }
+                                { isAuthenticated && token ? <ProjectsItem editMode={true} toggleNewProject={toggleNewProject} /> : null }
                             </Col>
                         </Row>
                     </Container>
