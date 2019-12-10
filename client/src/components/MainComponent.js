@@ -13,11 +13,13 @@ const mapStateToProps = state => ({
 
 class MainComponent extends PureComponent {
     render() {
+        const { isLoginOpen, isContactOpen } = this.props
+
         return (
             <>
-                { this.props.isLoginOpen ? <Login /> : null}
-                { this.props.isContactOpen ? <ContactForm /> : null }
-                <Home isContactOpen={this.props.isContactOpen} />
+                { isLoginOpen ? <Login /> : null}
+                { isContactOpen ? <ContactForm /> : null }
+                <Home />
             </>
         )
     }
