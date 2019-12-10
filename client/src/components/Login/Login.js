@@ -20,9 +20,14 @@ const mapDispatchToProps = dispatch => ({
 class Login extends PureComponent {
     // Handles the submitting of the login form after validation
     onSubmit = async values => {
-        const { loginUser } = this.props
+        const { loginUser, success, errMsg } = this.props
               
         await loginUser(values) // Sends values to dispatch
+        
+        if (success && !errMsg)
+            return this.hideModal();
+
+        return false
     }
     
     // Unloads the contact component
