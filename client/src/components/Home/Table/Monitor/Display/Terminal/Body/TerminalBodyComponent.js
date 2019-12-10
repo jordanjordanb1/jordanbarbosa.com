@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import './TerminalBodyComponent.css'
@@ -23,9 +23,9 @@ class TerminalBodyComponent extends PureComponent {
         return (
             <div className="terminal-body" onClick={() => this.props.inputRef.current.focus()}>
                 {this.props.console.map((item, index) => {
-                    return <div key={index}>
+                    return <Fragment key={index}>
                                 {item}
-                           </div>
+                           </Fragment>
                 })}
             </div>
         )
