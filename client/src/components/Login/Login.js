@@ -25,16 +25,18 @@ class Login extends PureComponent {
         await loginUser(values) // Sends values to dispatch
         
         if (success && !errMsg)
-            return this.hideModal();
+            return this.hideModal('Successfully logged in!');
 
         return false
     }
     
     // Unloads the contact component
-    hideModal() {
+    hideModal(msg) {
+        let insertMsg = msg || 'Exiting login form...'
+
         return setTimeout(() => {
             this.props.toggleLogin(); 
-            this.props.insertMessage('Exiting login form...'); 
+            this.props.insertMessage(insertMsg);
             this.props.insertInput()
         }, 200)
     }

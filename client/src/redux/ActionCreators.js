@@ -84,7 +84,7 @@ export const getHistoryItem = direction => (dispatch, getState) => {
 }
 
 // Executes the command typed into the console
-export const executeCommand = command => dispatch => {
+export const executeCommand = command => (dispatch , getState) => {
     dispatch({
         type: ActionTypes.EXECUTE_COMMAND,
         payload: command
@@ -201,11 +201,19 @@ export const executeCommand = command => dispatch => {
             }, 100)
             return true // Returns true so console doesn't think an error occured
         case 'login':
-            dispatch(insertMessage('Showing login page...'))
-            setTimeout(() => {
-                dispatch(toggleLogin())
-            }, 100)
-            return true; // Returns true so console doesn't think an error occured
+            const { isAuthenticated, token } = getState().user
+
+            if (!isAuthenticated, !token) {
+                dispatch(insertMessage('Showing login page...'))
+                setTimeout(() => {
+                    dispatch(toggleLogin())
+                }, 100)
+                return true; // Returns true so console doesn't think an error occured
+            } else {
+                dispatch(insertMessage('You\'re already logged in!'))
+                dispatch(insertInput())
+                return true
+            }
         default:
             return false; // Returns false so console knows error occured
     }
