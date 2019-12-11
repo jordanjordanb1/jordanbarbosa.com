@@ -37,6 +37,7 @@ export const showProjects = () => dispatch => {
 // Hides project component
 export const hideProjects = () => dispatch => {
     dispatch(push('/'))
+    dispatch(initialize())
 }
 
 // Runs when page is open
@@ -203,7 +204,7 @@ export const executeCommand = command => (dispatch , getState) => {
         case 'login':
             const { isAuthenticated, token } = getState().user
 
-            if (!isAuthenticated, !token) {
+            if (!isAuthenticated && !token) {
                 dispatch(insertMessage('Showing login page...'))
                 setTimeout(() => {
                     dispatch(toggleLogin())
