@@ -6,6 +6,7 @@ import { push } from 'connected-react-router'
 import React from 'react'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import axios from 'axios'
+import { setAuthHeader } from '../components/Shared/loginUtils'
 
 import Message from '../components/Shared/Message/MessageComponent'
 import Input from '../components/Shared/Input/InputComponent'
@@ -353,15 +354,19 @@ export const toggleNewProject = () => ({
     type: ActionTypes.TOGGLE_NEW_PROJECT
 })
 
+// Stores image from file uploader to store
+export const storeImage = image => ({
+    type: ActionTypes.STORE_IMAGE,
+    payload: image
+})
+
 // Submits the new project to backend
 export const createNewProject = values => (dispatch, getState) => {
-    const { token } = getState().user,
-            config = { headers: {
-                'Authorization': `Bearer ${token}`
-            }}
+    const { token } = getState().user
 
     if (values) {
-        axios.post(`/projects`, values, config)
+        axios.post(`/projects`, values, setAuthHeader(token))
+             .catch(e => console.error(e))
     }
 
     return false
