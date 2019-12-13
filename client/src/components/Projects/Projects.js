@@ -82,7 +82,7 @@ class ProjectsComponent extends PureComponent {
                         <Row>
                             <Col className="d-flex flex-row justify-content-center flex-wrap" xs="12">
                                 { projects.map((item, index) => {
-                                    return <ProjectsItem key={index} values={item} click={this.openProjectsInfo} />
+                                    return <ProjectsItem key={item._id} values={item} click={this.openProjectsInfo} />
                                 }) }
 
                                 { isAuthenticated && token ? <ProjectsItem editMode={true} toggleNewProject={toggleNewProject} /> : null }
