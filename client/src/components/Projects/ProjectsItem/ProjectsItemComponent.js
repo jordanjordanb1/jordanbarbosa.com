@@ -27,9 +27,9 @@ export default class ProjectsItemComponent extends PureComponent {
 
         return tech.map((item, index) => {
             if (tech.length === (index + 1)) {
-                return <div key={index}>{item}</div>
+                return <div key={item}>{item}</div>
             }
-            return <div key={index}>{item}|</div>
+            return <div key={item}>{item}|</div>
         })
     }
 
