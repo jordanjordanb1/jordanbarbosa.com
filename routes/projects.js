@@ -2,10 +2,11 @@
 
 const express = require('express'),
       projectsRouter = express.Router(),
-      Projects = require('../models/projects')
+      Projects = require('../models/projects'),
+      multer = require('multer'),
+      upload = multer({ dest: 'public/static/media/projects1'}) // Remove 1 before pushing to heroku
 
-projectsRouter.route('/')
-    .get((req, res, next) => {
+projectsRouter.get('/', (req, res, next) => {
         Projects.find({}) // Gets all projects from Mongo
             .then(projects => {
                 res.statusCode = 200
@@ -14,14 +15,9 @@ projectsRouter.route('/')
             }, err => next(err))
             .catch(err => next(err))
     })
-    .post((req, res) => {
-        res.statusCode = 404 
-    })
-    .put((req, res) => {
-        res.statusCode = 404 
-    })
-    .delete((req, res) => {
-        res.statusCode = 404 
-    })
+
+projectsRouter.post('/', upload.single('img'), (req, res, next) => {
+    console.log(req.body)
+})
 
 module.exports = projectsRouter
