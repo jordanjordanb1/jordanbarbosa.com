@@ -69,7 +69,7 @@ const renderSwitch = ({ input, label }) => ( // Renders the inputs
     </>
 )
 
-const contactForm = ({ onSubmit, handleSubmit, reset, valid, pristine, submitting }) => {
+const contactForm = ({ onSubmit, handleImage, handleSubmit, reset, valid, pristine, submitting }) => {
     return (
         <Form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
             <Form.Group > 
@@ -94,7 +94,7 @@ const contactForm = ({ onSubmit, handleSubmit, reset, valid, pristine, submittin
 
             <Form.Group>
                     <Form.Label htmlFor="img">Upload Project Image</Form.Label>
-                    <Field type="file" name="img" component={renderFile} validate={required} />
+                    <Field type="file" name="img" onChange={handleImage} component={renderFile} validate={required} />
             </Form.Group>
 
             <Form.Group>
