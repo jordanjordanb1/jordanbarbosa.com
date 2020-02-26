@@ -2,7 +2,7 @@
   "name": "server",
   "version": "0.0.5",
   "private": true,
-  "homepage": "https://jordanbarbosa.com",
+  "homepage": "https://old-jordanbarbosa-portfolio.herokuapp.com/",
   "scripts": {
     "client": "cd client && npm run start",
     "start": "node ./bin/www",

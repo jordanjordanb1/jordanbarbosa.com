@@ -6,7 +6,7 @@ export const isProd = () => {
 
 const URL = () => {
     if (isProd()) {
-        return 'https://jordanbarbosa.com'
+        return 'https://old-jordanbarbosa-portfolio.herokuapp.com'
     } else {
         return 'http://localhost:3001'
     }
